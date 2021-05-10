@@ -19,7 +19,7 @@ const Movement = db.define(
             allowNull: false,
         },
         date: {
-            type: Sequelize.DATE,
+            type: Sequelize.DATEONLY,
             allowNull: false,
         },
         amount: {
