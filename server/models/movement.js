@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../db.js');
 
 const db = require('../db.js');
 
@@ -14,10 +13,6 @@ const Movement = db.define(
     'Movement',
     {
         // Atributos
-        description: {
-            type: Sequelize.STRING,
-            allowNull: false,
-        },
         date: {
             type: Sequelize.DATE,
             allowNull: false,
@@ -35,7 +30,6 @@ const Movement = db.define(
             type: Sequelize.STRING,
             allowNull: false,
         },
-
     },
     { tableName: 'Movement' }
 );
@@ -74,10 +68,9 @@ const createMovement = ({
     amount = 0.0,
     type = MovementType.EXPENSE,
     category = '',
-    description = '',
 } = {}) => {
     date = new Date()
-    return Movement.create({ description,date, amount, type, category });
+    return Movement.create({ date, amount, type, category });
 };
 
 /**
@@ -89,17 +82,15 @@ const createMovement = ({
 const updateMovement = (
     id,
     {
-        description = '',
         date = '01/01/2021',
         amount = 0.0,
         type = MovementType.EXPENSE,
         category = '',
-
     } = {}
 ) => {
     return Movement.findOne({ where: { id: id } }).then((movement) => {
         if (movement != null) {
-            return movement.update({description, date, amount, type, category  });
+            return movement.update({ date, amount, type, category });
         }
         return null;
     });
