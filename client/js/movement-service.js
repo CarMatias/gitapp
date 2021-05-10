@@ -33,7 +33,11 @@ async function create(movement) {
         body: JSON.stringify(movement),
     });
 
-    alert("Se agrego Correctamente el movimiento");
+    Swal.fire(
+        'Good job!',
+        'You clicked the button!',
+        'success'
+      )
 
     return resp.json();
 }
