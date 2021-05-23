@@ -16,6 +16,15 @@ describe('Home Test', () => {
         cy.get('[data-testid=movement]').should('have.length', 5);
     });
 
+    it('Deberia mostrar fechas en formato correcto', () => {
+        cy.visit('/');
+
+        cy.get('ul>li .level-left .has-text-weight-light').eq(0).should(($p) => {
+            expect($p).to.contain('2021-05-23')
+
+        });
+    });
+
     it('Deberia poder navegar a income', () => {
         cy.visit('/');
 
