@@ -11,7 +11,7 @@ describe('Ingresos Test', () => {
             .find('button')
             .contains('editar')
             .click();
-
+        cy.get('input[name=description]').should('have.value', '');
         cy.get('input[name=id]').should('have.value', '3');
         cy.get('input[name=category]').should('have.value', 'Sueldo');
         cy.get('input[name=amount]').should('have.value', '50000');
@@ -19,7 +19,7 @@ describe('Ingresos Test', () => {
 
     it('Deberia poder crear un nuevo ingreso', () => {
         cy.visit('/income');
-
+        cy.get('input[name=description]').type("Test")
         cy.get('input[name=date]').type('2021-04-26');
         cy.get('input[name=category]').type('Bono');
         cy.get('input[name=amount]').type('100000');
