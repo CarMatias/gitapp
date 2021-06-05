@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../db.js');
-
+/* const sequelize = require('../db.js');
+ */
 const db = require('../db.js');
 
 const MovementType = require('./movementType.js');

@@ -1,4 +1,5 @@
 const BASE_URL = '/api/v1';
+import Swal from 'sweetalert2'
 
 async function getLast() {
     const resp = await fetch(`${BASE_URL}/movements`);
