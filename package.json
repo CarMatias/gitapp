@@ -25,7 +25,11 @@
     "node": "^16.0.0",
     "nunjucks": "^3.2.3",
     "sequelize": "^6.6.2",
-    "sqlite3": "^5.0.2"
+    "sqlite3": "^5.0.2",
+    "swal": "^0.1.0",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.0.16",
+    "vue": "^2.6.13"
   },
   "devDependencies": {
     "@lhci/cli": "^0.7.1",

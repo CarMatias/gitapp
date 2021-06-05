@@ -22,6 +22,6 @@ module.exports = {
             plugins: ['jest'],
         },
     ],
-    ignorePatterns: ['client/js/partials/*.js'],
+    ignorePatterns: ['client/js/partials/*.js','client/js/movement-service.js'],
     extends: ['eslint:recommended'],
 };
