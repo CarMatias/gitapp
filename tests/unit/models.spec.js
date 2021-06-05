@@ -1,3 +1,4 @@
+
 const MovementModel = require('../../server/models/movement.js');
 const MovementType = require('../../server/models/movementType.js');
 
@@ -148,6 +149,17 @@ test('Filtrar movimientos por tipo income', async () => {
     expect(movements.rows.length).toBe(1);
     expect(movements.rows[0].id).toBe(movement.id);
 });
+
+test('Verificar formato fecha correcto', async ()=>{
+        const movementData = {
+            date: "04/01/2021",
+            amount: 50000.0,
+            category: 'Sueldo',
+    };
+
+   const movement = await MovementModel.create(movementData);
+   expect(movement.date).toHaveLength(10);
+})
 
 test('Filtrar movimientos por tipo expense', async () => {
     const firstMovementData = {
