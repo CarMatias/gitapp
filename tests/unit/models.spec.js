@@ -37,6 +37,24 @@ test('Crear movimiento sin tipo', async () => {
     expect(movement.category).toBe(movementData.category);
 });
 
+test('Crear movimiento con descripcion', async () => {
+    const movementData = {
+        date: '04/01/2021',
+        amount: 50000.0,
+        type: MovementType.INCOME,
+        category: 'Sueldo',
+        description:'Test-Descripcion'
+    };
+
+    // Creamos el movimiento
+    const movement = await MovementModel.create(movementData);
+
+    expect(movement.amount).toBe(movementData.amount);
+    expect(movement.type).toBe(movementData.type);
+    expect(movement.category).toBe(movementData.category)
+    expect(movement.description).toBe(movementData.description);
+});
+
 test('Crear movimiento sin fecha', async () => {
     const movementData = {
         amount: 1000.0,
