@@ -24,9 +24,19 @@ describe('Ingresos Test', () => {
         cy.get('input[name=category]').type('Bono');
         cy.get('input[name=amount]').type('100000');
         cy.contains('Guardar').click();
-        cy.get('.swal2-title').should('have.text','Good job!')
         cy.reload();
 
         cy.get('[data-testid=movement]').should('have.length', 5);
+    });
+
+    it('Deberia verificar que se agreguen nuevos movimientos', () => {
+        cy.visit('/income');
+
+        cy.get('input[name=date]').type('2021-05-26');
+        cy.get('input[name=category]').type('Sueldo');
+        cy.get('input[name=amount]').type('10000');
+        cy.contains('Guardar').click();
+        cy.get('.swal2-title').should('have.text','Good job!')
+        cy.reload();
     });
 });
