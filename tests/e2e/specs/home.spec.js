@@ -9,12 +9,22 @@ describe('Home Test', () => {
         cy.title().should('eq', 'Gitapp');
     });
 
+    it('Deberia estar bien el formato del entero', () => {
+        cy.visit('/');
+
+       cy.get('ul>li .level-right p').eq(1).should(($p)=>{
+            expect($p).to.contain('$ 587,5')
+
+        }) 
+    });
+
     it('Deberia mostrar los ultimos 5 movimientos', () => {
         cy.visit('/');
 
         cy.get('[data-testid=last-movements]').contains('Últimos movimientos');
         cy.get('[data-testid=movement]').should('have.length', 5);
     });
+
 
     it('Deberia poder navegar a income', () => {
         cy.visit('/');
@@ -26,3 +36,4 @@ describe('Home Test', () => {
             .should('eq', 'Gitapp - Ingresos')
     });
 });
+

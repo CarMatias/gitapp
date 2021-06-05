@@ -1,3 +1,4 @@
+
 const MovementModel = require('../../server/models/movement.js');
 const MovementType = require('../../server/models/movementType.js');
 
@@ -34,6 +35,24 @@ test('Crear movimiento sin tipo', async () => {
     expect(movement.amount).toBe(movementData.amount);
     expect(movement.type).toBe(MovementType.EXPENSE);
     expect(movement.category).toBe(movementData.category);
+});
+
+test('Crear movimiento con descripcion', async () => {
+    const movementData = {
+        date: '04/01/2021',
+        amount: 50000.0,
+        type: MovementType.INCOME,
+        category: 'Sueldo',
+        description:'Test-Descripcion'
+    };
+
+    // Creamos el movimiento
+    const movement = await MovementModel.create(movementData);
+
+    expect(movement.amount).toBe(movementData.amount);
+    expect(movement.type).toBe(movementData.type);
+    expect(movement.category).toBe(movementData.category)
+    expect(movement.description).toBe(movementData.description);
 });
 
 test('Crear movimiento sin fecha', async () => {
@@ -148,6 +167,17 @@ test('Filtrar movimientos por tipo income', async () => {
     expect(movements.rows.length).toBe(1);
     expect(movements.rows[0].id).toBe(movement.id);
 });
+
+test('Verificar formato fecha correcto', async ()=>{
+        const movementData = {
+            date: "04/01/2021",
+            amount: 50000.0,
+            category: 'Sueldo',
+    };
+
+   const movement = await MovementModel.create(movementData);
+   expect(movement.date).toHaveLength(10);
+})
 
 test('Filtrar movimientos por tipo expense', async () => {
     const firstMovementData = {
