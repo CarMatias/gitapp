@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
-/* const sequelize = require('../db.js');
- */
+
 const db = require('../db.js');
 
 const MovementType = require('./movementType.js');
@@ -19,7 +18,7 @@ const Movement = db.define(
             allowNull: false,
         },
         date: {
-            type: Sequelize.DATE,
+            type: Sequelize.DATEONLY,
             allowNull: false,
         },
         amount: {

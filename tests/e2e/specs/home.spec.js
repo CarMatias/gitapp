@@ -25,6 +25,7 @@ describe('Home Test', () => {
         cy.get('[data-testid=movement]').should('have.length', 5);
     });
 
+
     it('Deberia poder navegar a income', () => {
         cy.visit('/');
 
@@ -34,4 +35,5 @@ describe('Home Test', () => {
             .title()
             .should('eq', 'Gitapp - Ingresos')
     });
-})
+});
+
