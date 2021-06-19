@@ -63,7 +63,7 @@ test('Buscar movimientos por api con un resultado', async () => {
 
     // Creamos los movimientos
     const firstMovement = await MovementModel.create(firstMovementData);
-    await MovementModel.create(secondMovementData);
+    const secondMovement=await MovementModel.create(secondMovementData);
 
     const URL = `${baseURL}/movements?limit=1`;
     const req = await fetch(URL);
@@ -71,7 +71,7 @@ test('Buscar movimientos por api con un resultado', async () => {
 
     expect(req.status).toBe(200);
     expect(body.movements.length).toBe(1);
-    expect(firstMovement.id).toBe(body.movements[0].id);
+    expect(secondMovement.id).toBe(body.movements[0].id);
 });
 
 test('Buscar movimientos por api con offset', async () => {
@@ -89,7 +89,7 @@ test('Buscar movimientos por api con offset', async () => {
     };
 
     // Creamos los movimientos
-    await MovementModel.create(firstMovementData);
+    const firstMovement=await MovementModel.create(firstMovementData);
     const secondMovement = await MovementModel.create(secondMovementData);
 
     const URL = `${baseURL}/movements?limit=1&page=2`;
@@ -97,7 +97,7 @@ test('Buscar movimientos por api con offset', async () => {
     const response = await req.json();
 
     expect(response.movements.length).toBe(1);
-    expect(secondMovement.id).toBe(response.movements[0].id);
+    expect(firstMovement.id).toBe(response.movements[0].id);
 });
 
 test('Buscar movimientos por api filtrando por tipo income', async () => {
