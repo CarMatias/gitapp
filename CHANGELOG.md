@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2021-06-19
+### Added
+
+- Movimiento Alerta y su test 
+- Descripcion al modelo y su test
+
+### Changed
+
+- Bug arreglado punto flotanto y su test
+- Bug arreglado formato fecha y su test
+
 ## [1.0.1] - 2021-05-03
 
 ### Added
