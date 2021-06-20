@@ -62,7 +62,7 @@ test('Buscar movimientos por api con un resultado', async () => {
     };
 
     // Creamos los movimientos
-    const firstMovement = await MovementModel.create(firstMovementData);
+    await MovementModel.create(firstMovementData);
     const secondMovement=await MovementModel.create(secondMovementData);
 
     const URL = `${baseURL}/movements?limit=1`;
@@ -90,7 +90,7 @@ test('Buscar movimientos por api con offset', async () => {
 
     // Creamos los movimientos
     const firstMovement=await MovementModel.create(firstMovementData);
-    const secondMovement = await MovementModel.create(secondMovementData);
+    await MovementModel.create(secondMovementData);
 
     const URL = `${baseURL}/movements?limit=1&page=2`;
     const req = await fetch(URL);

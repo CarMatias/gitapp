@@ -130,7 +130,7 @@ test('Listar movimientos con limite', async () => {
     };
 
     // Creamos los movimientos
-    const movement = await MovementModel.create(firstMovementData);
+    await MovementModel.create(firstMovementData);
     const movement2=await MovementModel.create(secondMovementData);
 
     let movements = await MovementModel.getAll(1);
@@ -157,7 +157,7 @@ test('Listar movimientos con limite y offset', async () => {
 
     // Creamos los movimientos
     const firstMovement=await MovementModel.create(firstMovementData);
-    const secondMovement = await MovementModel.create(secondMovementData);
+    await MovementModel.create(secondMovementData);
 
     let movements = await MovementModel.getAll(1, 1);
 
