@@ -16,15 +16,6 @@ describe('Ingresos Test', () => {
         cy.get('input[name=amount]').should('have.value', '11000');
     });
 
-    it('Deberia eliminar el formulario al editar un ingreso', () => {
-        cy.get(':nth-child(1) > [data-testid=movement]')           
-            .find('button')
-            .contains('editar')
-            .click()
-        cy.get('.is-flex-grow-1 > .button')
-            .click();
-        cy.get('[data-testid=movement]').should('have.length', 3);
-    });
 
     it('Deberia poder crear un nuevo ingreso', () => {
         cy.visit('/income');
@@ -43,7 +34,7 @@ describe('Ingresos Test', () => {
         cy.get('input[name=category]').type('Sueldo');
         cy.get('input[name=amount]').type('10000');
         cy.contains('Guardar').click();
-        cy.get('.swal2-title').should('have.text','Good job!')
+        cy.get('.swal2-title').should('have.text', 'Good job!')
         cy.reload();
     });
 
@@ -57,10 +48,16 @@ describe('Ingresos Test', () => {
         cy.get('input[name=description]').should('exist')
     });
 
-    it('Deberia aparecer un simbolo positivo o negativo en el monto dependiendo de si es ingreso o gasto', () => {
-        cy.visit('/');
-        cy.get('[class="has-text-danger is-size-3"]').contains('-');
+    it('Deberia aparecer el campo recurrencia al crear y obtener un movimiento', () => {
         cy.visit('/income');
-        cy.get('[class="has-text-success is-size-3"]').contains('+');
+
+        cy.get('input[name=recurrent]').should('exist')
+        cy.get('[data-testid=movement]')
+            .find('button')
+            .contains('editar')
+            .click();
+        cy.get('input[name=recurrent]').should('exist')
     });
-});
+
+
+})
