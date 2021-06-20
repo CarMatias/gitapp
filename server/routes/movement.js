@@ -66,3 +66,20 @@ router.put('/:id', function (req, res) {
 });
 
 module.exports = router;
+/**
+ * Endpoint para editar eliminar un movimiento.
+ * Recibe el id en req.params.id
+ *
+ */
+ 
+router.delete('/:id', function (req, res) {
+    MovementModel.delete(req.params.id, req.body)
+        .then((respu) => {
+            if (!respu) {
+                res.status(404).send(
+                    'El movimiento ' + req.params.id + ' no fue encontrado'
+                );
+            } else res.status(200).send(respu);
+        })
+        .catch(() => res.status(500).send('Error al obtener movimiento'));
+});
