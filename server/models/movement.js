@@ -60,6 +60,9 @@ const getAllMovements = (limit, skip, type) => {
             exclude: ['createdAt', 'updatedAt'],
         },
         where: where,
+        order: [
+            ['id', 'DESC'],
+        ],
     });
 };
 
