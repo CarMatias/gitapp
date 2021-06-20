@@ -60,6 +60,7 @@ describe('Ingresos Test', () => {
     it('Deberia aparecer un simbolo positivo o negativo en el monto dependiendo de si es ingreso o gasto', () => {
         cy.visit('/');
         cy.get('[class="has-text-danger is-size-3"]').contains('-');
+        cy.visit('/income');
         cy.get('[class="has-text-success is-size-3"]').contains('+');
     });
 });
