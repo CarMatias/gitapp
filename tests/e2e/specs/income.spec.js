@@ -11,9 +11,9 @@ describe('Ingresos Test', () => {
             .find('button')
             .contains('editar')
             .click();
-        cy.get('input[name=id]').should('have.value', '3');
-        cy.get('input[name=category]').should('have.value', 'Sueldo');
-        cy.get('input[name=amount]').should('have.value', '50000');
+        cy.get('input[name=id]').should('have.value', '14');
+        cy.get('input[name=category]').should('have.value', 'Plazo Fijo');
+        cy.get('input[name=amount]').should('have.value', '11000');
     });
 
 
