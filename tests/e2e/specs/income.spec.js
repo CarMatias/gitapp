@@ -11,20 +11,11 @@ describe('Ingresos Test', () => {
             .find('button')
             .contains('editar')
             .click();
-        cy.get('input[name=id]').should('have.value', '14');
-        cy.get('input[name=category]').should('have.value', 'Plazo Fijo');
-        cy.get('input[name=amount]').should('have.value', '11000');
+        cy.get('input[name=id]').should('have.value', '3');
+        cy.get('input[name=category]').should('have.value', 'Sueldo');
+        cy.get('input[name=amount]').should('have.value', '50000');
     });
 
-    it('Deberia eliminar el formulario al editar un ingreso', () => {
-        cy.get(':nth-child(1) > [data-testid=movement]')           
-            .find('button')
-            .contains('editar')
-            .click()
-        cy.get('.is-flex-grow-1 > .button')
-            .click();
-        cy.get('[data-testid=movement]').should('have.length', 3);
-    });
 
     it('Deberia poder crear un nuevo ingreso', () => {
         cy.visit('/income');
@@ -43,7 +34,7 @@ describe('Ingresos Test', () => {
         cy.get('input[name=category]').type('Sueldo');
         cy.get('input[name=amount]').type('10000');
         cy.contains('Guardar').click();
-        cy.get('.swal2-title').should('have.text','Good job!')
+        cy.get('.swal2-title').should('have.text', 'Good job!')
         cy.reload();
     });
 
@@ -58,7 +49,7 @@ describe('Ingresos Test', () => {
     });
     it('Deberia aparecer el campo recurrencia al crear y obtener un movimiento', () => {
         cy.visit('/income');
-        
+
         cy.get('input[name=recurrent]').should('exist')
         cy.get('[data-testid=movement]')
             .find('button')
@@ -68,9 +59,4 @@ describe('Ingresos Test', () => {
     });
 
 
-    it('Deberia aparecer un simbolo positivo o negativo en el monto dependiendo de si es ingreso o gasto', () => {
-        cy.visit('/');
-        cy.get('[class="has-text-danger is-size-3"]').contains('-');
-        cy.visit('/income');
-        cy.get('[class="has-text-success is-size-3"]').contains('+');
-    });
+})
