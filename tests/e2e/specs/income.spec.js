@@ -16,6 +16,16 @@ describe('Ingresos Test', () => {
         cy.get('input[name=amount]').should('have.value', '50000');
     });
 
+    it('Deberia eliminar el formulario al editar un ingreso', () => {
+        cy.get(':nth-child(1) > [data-testid=movement]')           
+            .find('button')
+            .contains('editar')
+            .click()
+        cy.get('.is-flex-grow-1 > .button')
+            .click();
+        cy.get('[data-testid=movement]').should('have.length', 3);
+    });
+
     it('Deberia poder crear un nuevo ingreso', () => {
         cy.visit('/income');
         cy.get('input[name=date]').type('2021-04-26');
