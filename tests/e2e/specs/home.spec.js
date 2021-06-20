@@ -12,10 +12,7 @@ describe('Home Test', () => {
     it('Deberia estar bien el formato del entero', () => {
         cy.visit('/');
 
-       cy.get('ul>li .level-right p').eq(1).should(($p)=>{
-            expect($p).to.contain('$ 587,5')
-
-        }) 
+        cy.get(':nth-child(1) > [data-testid=movement] > .level-right > .level-item > .has-text-danger').contains("$ 1.498")
     });
 
     it('Deberia mostrar los ultimos 5 movimientos', () => {

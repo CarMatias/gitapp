@@ -56,6 +56,7 @@ describe('Ingresos Test', () => {
             .click();
         cy.get('input[name=description]').should('exist')
     });
+
     it('Deberia aparecer el campo recurrencia al crear y obtener un movimiento', () => {
         cy.visit('/income');
         

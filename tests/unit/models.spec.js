@@ -68,6 +68,29 @@ test('Crear movimiento sin fecha', async () => {
     }
 });
 
+test('Obtener movimientos de manera descendente', async () => {
+    const movementData1 = {
+        date: '04/01/2021',
+        amount: 50000.0,
+        type: MovementType.INCOME,
+        category: 'Sueldo',
+    };
+    const movementData2 = {
+        date: '04/01/2021',
+        amount: 300.0,
+        type: MovementType.EXPENSE,
+        category: 'Transporte',
+    };
+
+    // Creamos los movimiento
+    const movement1 = await MovementModel.create(movementData1);
+    const movement2 = await MovementModel.create(movementData2);
+    const movements = await MovementModel.getAll();
+    expect(movements.rows[0].id).toBe(movement2.id)
+    expect(movements.rows[1].id).toBe(movement1.id)
+
+});
+
 test('Listar movimientos sin resultados', async () => {
     const movements = await MovementModel.getAll();
 
@@ -123,14 +146,14 @@ test('Listar movimientos con limite', async () => {
     };
 
     // Creamos los movimientos
-    const movement = await MovementModel.create(firstMovementData);
-    await MovementModel.create(secondMovementData);
+    await MovementModel.create(firstMovementData);
+    const movement2=await MovementModel.create(secondMovementData);
 
     let movements = await MovementModel.getAll(1);
 
-    // La lista de movimientos debería contener solo el primero
+    // La lista de movimientos debería contener solo el segundo movimiento
     expect(movements.rows.length).toBe(1);
-    expect(movements.rows[0].id).toBe(movement.id);
+    expect(movements.rows[0].id).toBe(movement2.id);
 });
 
 test('Listar movimientos con limite y offset', async () => {
@@ -149,14 +172,14 @@ test('Listar movimientos con limite y offset', async () => {
     };
 
     // Creamos los movimientos
-    await MovementModel.create(firstMovementData);
-    const movement = await MovementModel.create(secondMovementData);
+    const firstMovement=await MovementModel.create(firstMovementData);
+    await MovementModel.create(secondMovementData);
 
     let movements = await MovementModel.getAll(1, 1);
 
-    // La lista de movimientos debería contener solo el segundo
+    // La lista de movimientos debería contener solo el primer movimiento
     expect(movements.rows.length).toBe(1);
-    expect(movements.rows[0].id).toBe(movement.id);
+    expect(movements.rows[0].id).toBe(firstMovement.id);
 });
 
 test('Filtrar movimientos por tipo income', async () => {
