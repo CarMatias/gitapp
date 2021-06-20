@@ -30,42 +30,25 @@ describe('Ingresos Test', () => {
     });
    
 
-   
-
+    it('Deberia verificar que se agreguen nuevos movimientos', () => {
+        cy.visit('/income');
+        cy.get('input[name=date]').type('2021-05-26');
+        cy.get('input[name=category]').type('Sueldo');
+        cy.get('input[name=amount]').type('10000');
+        cy.contains('Guardar').click();
+        cy.get('.swal2-title').should('have.text','Good job!')
+        cy.reload(); 
+    });
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-
-
-
-    
-    
-    
-    
-    
+    it('Deberia aparecer el campo descripcion al crear y obtener un movimiento', () => {
+        cy.visit('/income');
+        cy.get('input[name=description]').should('exist')
+        cy.get('[data-testid=movement]')
+            .find('button')
+            .contains('editar')
+            .click();
+        cy.get('input[name=description]').should('exist')
+    })
     
     it('Deberia aparecer el campo recurrencia al crear y obtener un movimiento', () => {
         cy.visit('/income');
