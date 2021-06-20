@@ -91,6 +91,22 @@ test('Listar movimientos con resultados', async () => {
     expect(movements).not.toBeNull();
     expect(movements.rows.length).toBe(1);
 });
+test('Crear movimiento con recurrencia', async () => {
+    const movementData = {
+        date: '04/01/2021',
+        amount: 50000.0,
+        type: MovementType.INCOME,
+        category: 'Sueldo',
+        recurrent: false,
+
+    };
+
+    // Creamos el movimiento
+    const movement = await MovementModel.create(movementData);
+    // Verifico que el movimiento con recurrencia
+    expect(movement.recurrent).toBe(movementData.recurrent);
+    
+});
 
 test('Listar movimientos con limite', async () => {
     const firstMovementData = {

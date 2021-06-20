@@ -18,6 +18,12 @@
                 <p class="has-text-weight-light is-size-7">
                     {{ movement.description }}
                 </p>
+                {% if movement.recurrent %}
+                <input type="checkbox" checked disabled>
+                {% else %}
+                <input type="checkbox" disabled >
+                {% endif %}
+                
             </div>
         </div>
     </div>

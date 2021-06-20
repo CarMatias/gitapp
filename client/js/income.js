@@ -34,8 +34,10 @@ async function init() {
 function getMovementData() {
     const formData = new FormData(refs.form.firstElementChild);
     const movement = Object.fromEntries(formData);
-    movement.type = "income"
+    movement.type = "income";
+    movement.recurrent = (document.getElementById("check1").checked);
     return movement;
+
 }
 
 // Event Listeners

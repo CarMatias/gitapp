@@ -11,6 +11,7 @@ describe('Ingresos Test', () => {
             .find('button')
             .contains('editar')
             .click();
+
         cy.get('input[name=id]').should('have.value', '3');
         cy.get('input[name=category]').should('have.value', 'Sueldo');
         cy.get('input[name=amount]').should('have.value', '50000');
@@ -18,6 +19,7 @@ describe('Ingresos Test', () => {
 
     it('Deberia poder crear un nuevo ingreso', () => {
         cy.visit('/income');
+
         cy.get('input[name=date]').type('2021-04-26');
         cy.get('input[name=category]').type('Bono');
         cy.get('input[name=amount]').type('100000');
@@ -26,25 +28,18 @@ describe('Ingresos Test', () => {
 
         cy.get('[data-testid=movement]').should('have.length', 5);
     });
-
-    it('Deberia verificar que se agreguen nuevos movimientos', () => {
+   
+   
+    it('Deberia aparecer el campo recurrencia al crear y obtener un movimiento', () => {
         cy.visit('/income');
-        cy.get('input[name=date]').type('2021-05-26');
-        cy.get('input[name=category]').type('Sueldo');
-        cy.get('input[name=amount]').type('10000');
-        cy.contains('Guardar').click();
-        cy.get('.swal2-title').should('have.text','Good job!')
-        cy.reload(); 
-    });
-
-    it('Deberia aparecer el campo descripcion al crear y obtener un movimiento', () => {
-        cy.visit('/income');
-        cy.get('input[name=description]').should('exist')
+        
+        cy.get('input[name=recurrent]').should('exist')
         cy.get('[data-testid=movement]')
             .find('button')
             .contains('editar')
             .click();
-        cy.get('input[name=description]').should('exist')
-
+        cy.get('input[name=recurrent]').should('exist')
     });
+
+
 });
