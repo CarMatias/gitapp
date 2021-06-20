@@ -29,7 +29,44 @@ describe('Ingresos Test', () => {
         cy.get('[data-testid=movement]').should('have.length', 5);
     });
    
+
    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+    
+    
+    
+    
+    
+    
     it('Deberia aparecer el campo recurrencia al crear y obtener un movimiento', () => {
         cy.visit('/income');
         
