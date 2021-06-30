@@ -58,14 +58,16 @@ describe('Ingresos Test', () => {
             .click();
         cy.get('input[name=recurrent]').should('exist')
     });
-
     it('Deberia aparecer un simbolo positivo o negativo en el monto dependiendo de si es ingreso o gasto', () => {
-        cy.visit('/');
+        cy.visit('/expense');
         cy.get('[class="has-text-danger is-size-3"]').contains('-');
+        cy.visit('/income');
         cy.get('[class="has-text-success is-size-3"]').contains('+');
     });
 
+
     it('Deberia eliminar el formulario al editar un ingreso', () => {
+        cy.visit('/income');
         cy.get(':nth-child(1) > [data-testid=movement]')
             .find('button')
             .contains('editar')
