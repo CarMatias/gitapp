@@ -34,6 +34,10 @@ const Movement = db.define(
             type: Sequelize.STRING,
             allowNull: false,
         },
+        recurrent:{
+            type: Sequelize.BOOLEAN,
+            allowNull: true,
+        },
 
     },
     { tableName: 'Movement' }
@@ -77,7 +81,9 @@ const createMovement = ({
     type = MovementType.EXPENSE,
     category = '',
     description = '',
+    recurrent = false,
 } = {}) => {
+
     //debo cambiar el formato de fecha para que no rompa el fixtures
     date=date.split("/")!=-1?(
         //viene del fixture y tengo que cambiarlo
@@ -103,12 +109,13 @@ const updateMovement = (
         amount = 0.0,
         type = MovementType.EXPENSE,
         category = '',
+        recurrent = false,
 
     } = {}
 ) => {
     return Movement.findOne({ where: { id: id } }).then((movement) => {
         if (movement != null) {
-            return movement.update({description, date, amount, type, category  });
+            return movement.update({description, date, amount, type, category, recurrent  });
         }
         return null;
     });

@@ -18,15 +18,24 @@
                 <p class="has-text-weight-light is-size-7">
                     {{ movement.description }}
                 </p>
+                {% if movement.recurrent %}
+                <input type="checkbox" checked disabled>
+                {% else %}
+                <input type="checkbox" disabled >
+                {% endif %}
+                
             </div>
         </div>
     </div>
 
     <div class="level-right">
         <div class="level-item">
-            <p
-                class="{{ 'has-text-success' if movement.type == 'income' else 'has-text-danger' }} is-size-3"
-            >
+            <p class="{{ 'has-text-success' if movement.type == 'income' else 'has-text-danger' }} is-size-3">
+                {% if movement.type == 'income' %}
+                    +
+                {% else %}
+                    -
+                {% endif %}
                 $ {{ movement.amount | monefy }}
             </p>
         </div>

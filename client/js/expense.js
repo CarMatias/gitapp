@@ -12,32 +12,30 @@ let refs = getRefs(document.body);
 /**
  * Obtiene todos los ultimos movimientos disponibles
  **/
-async function getIncomes() {
-    return movementService.getIncomes();
+async function getExpenses() {
+    return movementService.getExpenses();
 }
 
 /**
  * Renderiza los libros
  **/
-function renderIncomes(state) {
-    render('movement-list.html', state, refs.incomes);
+function renderExpenses(state) {
+    render('movement-list.html', state, refs.expenses);
 }
 
 /**
- * Inicializa la vista income
+ * Inicializa la vista expense
  **/
 async function init() {
-    state.movements = await getIncomes();
-    renderIncomes(state);
+    state.movements = await getExpenses();
+    renderExpenses(state);
 }
 
 function getMovementData() {
     const formData = new FormData(refs.form.firstElementChild);
     const movement = Object.fromEntries(formData);
-    movement.type = "income";
-    movement.recurrent = (document.getElementById("check1").checked);
+    movement.type = "expense"
     return movement;
-
 }
 
 // Event Listeners
@@ -62,7 +60,7 @@ window.onCancel = function () {
  * Elimina un movimiento
  **/
 window.onRemove = async function () {
-    await movementService.remove(state.movement);
+    await movementService.update(state.movement);
     state.movement = {};
     render('movement-form.html', state, refs.form);
 };

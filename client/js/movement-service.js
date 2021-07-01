@@ -12,6 +12,12 @@ async function getIncomes() {
     return movements;
 }
 
+async function getExpenses() {
+    const resp = await fetch(`${BASE_URL}/movements?type=expense`);
+    const { movements } = await resp.json();
+    return movements;
+}
+
 async function update(movement) {
     const resp = await fetch(`${BASE_URL}/movements/${movement.id}`, {
         method: 'PUT',
@@ -44,9 +50,15 @@ async function create(movement) {
 
 async function remove(movement) {
     console.log('delete:', movement);
-    return new Promise(resolve => {
-        resolve();
+    const resp = await fetch(`${BASE_URL}/movements/${movement.id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(movement),
     });
+    location.reload();
+    return resp.json();
 }
 
 export default {
@@ -55,4 +67,5 @@ export default {
     remove,
     getLast,
     getIncomes,
+    getExpenses
 };

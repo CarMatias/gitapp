@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2021-06-20
+### Added
+
+- Signo "-" y "+" en gastos e ingresos  resprectivamente y tests correspondiente
+- Campo recurrente agregado al modelo y tests correspondiente
+- Vista de egresos y tests correspondientes
+- Borrar movimientos y test correspondiente
+
+### Changed
+
+- Bug de orden decendiente de movimientos y test correspondiente
+
 ## [1.1.0] - 2021-06-19
 ### Added
 
