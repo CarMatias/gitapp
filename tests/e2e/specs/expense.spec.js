@@ -17,7 +17,7 @@ describe('Egresos Test', () => {
     });
 
 
-    it('Deberia poder crear un nuevo ingreso', () => {
+    it('Deberia poder crear un nuevo egreso', () => {
         cy.visit('/expense');
         cy.get('input[name=date]').type('2021-04-26');
         cy.get('input[name=category]').type('Comida');
@@ -27,6 +27,18 @@ describe('Egresos Test', () => {
 
         cy.get('[data-testid=movement]').should('have.length', 5);
     });
+
+    
+    it('Deberia guardar la fecha correctamente al crear un movimiento', () => {
+        cy.visit('/income');
+        cy.get('input[name=date]').type('2021-04-26');
+        cy.get('input[name=category]').type('Multa');
+        cy.get('input[name=amount]').type('300');
+        cy.contains('Guardar').click();
+        cy.reload();
+        cy.get(':nth-child(1) > [data-testid=movement] > .level-left > :nth-child(2) > div > :nth-child(2)').should('contain.text', '2021-04-26')
+    });
+
 
     it('Deberia verificar que se agreguen nuevos movimientos', () => {
         cy.visit('/expense');
