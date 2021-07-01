@@ -92,7 +92,7 @@ const createMovement = ({
         date
     )
 
-    return Movement.create({ description,date, amount, type, category });
+    return Movement.create({ description,date, amount, type, category, recurrent});
 };
 
 /**
