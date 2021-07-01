@@ -79,8 +79,13 @@ const createMovement = ({
     description = '',
 } = {}) => {
     //debo cambiar el formato de fecha para que no rompa el fixtures
-    var formattedDate=date.split('/')
-    date=`${formattedDate[1]}/${formattedDate[0]}/${formattedDate[2]}`
+    date=date.split("/")!=-1?(
+        //viene del fixture y tengo que cambiarlo
+        `${date.split("/")[2]}-${date.split("/")[1]}-${date.split("/")[0]}`
+    ):(
+        date
+    )
+
     return Movement.create({ description,date, amount, type, category });
 };
 
