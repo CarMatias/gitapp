@@ -76,7 +76,7 @@ test('Obtener movimientos de manera descendente', async () => {
         category: 'Sueldo',
     };
     const movementData2 = {
-        date: '04/01/2021',
+        date: '04/02/2021',
         amount: 300.0,
         type: MovementType.EXPENSE,
         category: 'Transporte',
@@ -165,7 +165,7 @@ test('Listar movimientos con limite y offset', async () => {
     };
 
     const secondMovementData = {
-        date: '04/01/2021',
+        date: '05/01/2021',
         amount: 50000.0,
         type: MovementType.INCOME,
         category: 'Sueldo',
