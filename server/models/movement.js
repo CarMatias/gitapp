@@ -65,7 +65,7 @@ const getAllMovements = (limit, skip, type) => {
         },
         where: where,
         order: [
-            ['id', 'DESC'],
+            ['date', 'DESC'],
         ],
     });
 };
@@ -84,7 +84,7 @@ const createMovement = ({
     recurrent = false,
 } = {}) => {
 
-    //debo cambiar el formato de fecha para que no rompa el fixtures
+    //debo cambiar el formato de fecha para que no rompa el fixture
     date=date.split("/")!=-1?(
         //viene del fixture y tengo que cambiarlo
         `${date.split("/")[2]}-${date.split("/")[1]}-${date.split("/")[0]}`
